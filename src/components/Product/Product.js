@@ -6,12 +6,16 @@ const Product = (props) => {
 
     return(
         <div>
-            Product
-            <span>{product.product_name}</span>
-            <span>{product.description}</span>
-            <span>{product.color}</span>
-            <span>{product.size}</span>
-            <span>{product.price}</span>
+            <span>Name: {product.product_name}</span>
+            <br/>
+            <span>Description: {product.description}</span>
+            <br/>
+            <span>Color: {product.color}</span>
+            <br/>
+            <span>Size: {product.size}</span>
+            <br/>
+            <span>Price: {product.price}</span>
+            <br/>
             <img src={product.product_image} alt='' />
         </div>
     )

@@ -21,6 +21,10 @@ class Products extends Component {
     })
   }
 
+  // buyProduct(){
+  //   axios.put('/api/product')
+  // }
+
   render() {
 
     const { products } = this.state;
@@ -34,6 +38,7 @@ class Products extends Component {
             <div key={i}>
               <Product
                 product={product} />
+                <button>Add To Cart</button>
             </div>
           ))
         }
