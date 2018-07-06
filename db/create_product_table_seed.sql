@@ -4,5 +4,6 @@ CREATE TABLE product (
   description TEXT,
   size INTEGER,
   color TEXT,
-  product_image TEXT
+  product_image TEXT,
+  price FLOAT(5)
 );
