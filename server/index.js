@@ -15,4 +15,5 @@ app.listen(port, () => {
 massive(process.env.CONNECTION_STRING)
     .then(db =>app.set('db', db));
 
-app.get('/api/products', controller.getProducts)
+app.get('/api/product', controller.getProducts);
+app.post('/api/products', controller.postProduct)

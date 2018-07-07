@@ -14,7 +14,7 @@ const Product = (props) => {
             <br/>
             <span>Size: {product.size}</span>
             <br/>
-            <span>Price: {product.price}</span>
+            <span>Price: ${product.price}</span>
             <br/>
             <img src={product.product_image} alt='' />
         </div>

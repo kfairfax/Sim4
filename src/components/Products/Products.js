@@ -15,15 +15,23 @@ class Products extends Component {
   }
 
   getProducts() {
-    axios.get('/api/products').then(res => {
-      console.log(res.data)
+    axios.get('/api/product').then(res => {
+      // console.log(res.data)
       this.setState({ products: res.data })
     })
   }
 
-  // buyProduct(){
-  //   axios.put('/api/product')
-  // }
+  addToCart(product) {
+    // console.log(product)
+    axios.post('/api/products', {
+      product_id: product.id,
+      quantity: 1
+    })
+      .then(res => {this.props.history.push('/cart')
+      // console.log(res)
+    })
+      
+  }
 
   render() {
 
@@ -38,7 +46,7 @@ class Products extends Component {
             <div key={i}>
               <Product
                 product={product} />
-                <button>Add To Cart</button>
+              <button onClick={() => this.addToCart(product)}>Add To Cart</button>
             </div>
           ))
         }
