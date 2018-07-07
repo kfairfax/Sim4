@@ -20,7 +20,7 @@ class Cart extends Component {
       
       {
         products.map((product, i) => (
-          <div key = {id}>
+          <div key = {i}>
               <Product
               product = {product}
               />
