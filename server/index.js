@@ -16,4 +16,9 @@ massive(process.env.CONNECTION_STRING)
     .then(db =>app.set('db', db));
 
 app.get('/api/product', controller.getProducts);
-app.post('/api/products', controller.postProduct)
+app.post('/api/products', controller.postProduct);
+app.get('/api/cart', controller.getCart);
+app.delete('/api/cart/:id', controller.deleteProduct);
+app.put('/api/cart_quantity/:id', controller.updateQuantity);
+app.get('/api/cart_total', controller.getCartTotal);
+app.delete('/api/cart_checkout', controller.deleteCart);
