@@ -23,14 +23,24 @@ class Products extends Component {
 
   addToCart(product) {
     // console.log(product)
-    axios.post('/api/products', {
-      product_id: product.id,
-      quantity: 1
-    })
-      .then(res => {this.props.history.push('/cart')
+
+    axios.get('/api/get_cart_product/' + product.id).then(res => {
       // console.log(res)
+      if (res.data.length === 0) {
+        axios.post('/api/products', {
+          product_id: product.id,
+          quantity: 1
+        })
+          .then(res => {
+            this.props.history.push('/cart')
+            // console.log(res)
+          })
+      }else{
+        axios.put('/api/product_quantity/' + product.id).then(res => {
+          this.props.history.push('/cart');
+        })
+      }
     })
-      
   }
 
   render() {

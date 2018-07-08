@@ -8,7 +8,6 @@ class Cart extends Component {
         super(props);
         this.state = {
           products: [],
-          quantity: 1,
           total: 0
         }
     }
@@ -24,11 +23,13 @@ class Cart extends Component {
 
 getCart(){
   axios.get('/api/cart').then(res =>{
+    // console.log(res)
     this.setState({products: res.data})
   })
 }
 
 handleDelete(id){
+  // console.log(id);
   axios.delete('/api/cart/' + id).then(res => {
     window.location.reload();
   })
@@ -39,18 +40,20 @@ handleQuantityChange(id, e){
 axios.put('/api/cart_quantity/' + id, {
   quantity: e
 }).then(res => {
- this.setState({quantity: e})
+ window.location.reload();
 })
 }
 
 handleCheckout(){
-  axios.delete('/api/cart_checkout')
+  axios.delete('/api/cart_checkout').then(res => {
+    window.location.reload();
+  })
 }
 
 
   render() {
 
-    const{products, quantity, total} = this.state;
+    const{products, total} = this.state;
     
     return (
       <div className="Cart">
@@ -62,7 +65,7 @@ handleCheckout(){
               <Product
               product = {product}
               />
-              <select value = {quantity} onChange = {(e) => {this.handleQuantityChange(product.id, e.target.value)}}>
+              <select value = {product.quantity} onChange = {(e) => {this.handleQuantityChange(product.id, e.target.value)}}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -74,7 +77,9 @@ handleCheckout(){
                 <option value="9">9</option>
                 <option value="10">10</option>
               </select>
-              
+              <br/>
+              <span>Your selected quantity for this item is {product.quantity}</span>
+              <br/>
               <button onClick = {() => {this.handleDelete(product.id)}}>Delete</button>
           </div>
         ))

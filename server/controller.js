@@ -58,6 +58,32 @@ module.exports = {
         const db = res.app.get('db');
         db.delete_cart()
             .then(() => res.status(200).send('cart emptied'))
-            .catch(() => res.status(500).send('deleteCart failed'))
+            .catch((err) => {
+                res.status(500).send('deleteCart failed')
+                console.log(err)
+            })
+    },
+
+    getCartProduct: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        db.get_cart_product([id])
+            .then((cart) => res.status(200).send(cart))
+            .catch(() => {
+                res.status(500).send('getCard failed')
+                // console.log(err)
+            })
+    },
+
+    checkQuantity: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+        const { quantity } = req.body;
+        db.check_quantity([id, quantity])
+            .then(() => res.status(200).send('cart updated'))
+            .catch(() => {
+                res.status(500).send('updateQuantity failed')
+            })
+
     }
 }

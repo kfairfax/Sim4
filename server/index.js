@@ -22,3 +22,5 @@ app.delete('/api/cart/:id', controller.deleteProduct);
 app.put('/api/cart_quantity/:id', controller.updateQuantity);
 app.get('/api/cart_total', controller.getCartTotal);
 app.delete('/api/cart_checkout', controller.deleteCart);
+app.get('/api/get_cart_product/:id', controller.getCartProduct);
+app.put('/api/product_quantity/:id', controller.checkQuantity);
